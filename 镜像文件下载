@@ -1,7 +1,7 @@
 
 pip install requests
 pip install requests --upgrade
-
+pip install -i url 库名
 
 ex: pip install pychecharts
 
@@ -12,19 +12,19 @@ pip install -i url pyecharts
 
 豆瓣镜像
 https://pypi.douban.com/simple/
-
-开源中国：
-http://mirrors.oschina.net/ 
-
-阿里云开源镜像：
-http://mirrors.aliyun.com/ 
+http://pypi.douban.com/simple/ 豆瓣
+阿里
+http://mirrors.aliyun.com/pypi/simple/
  
+
+
+ 
+ 开源中国：
+http://mirrors.oschina.net/
 网易开源镜像站：
 http://mirrors.163.com/ 
 
-http://pypi.douban.com/simple/ 豆瓣
-阿里
-http://mirrors.aliyun.com/pypi/simple/ 
+ 
 
 
 
