@@ -1,0 +1,120 @@
+
+
+
+视频：网易云---scipy
+
+
+3.matplotlib
+　　matplotlib是最流行的用于绘制数据图表的python库。
+
+
+4.Scipy
+　　Scipy是一组专门解决科学计算中各种标准问题域的包的集合。
+https://www.scipy.org.scipy
+
+5.statsmodels： https://github.com/statsmodels/statsmodels
+6.scikit-learn： http://scikit-learn.org/stable/
+
+
+Anaconda
+下载：https://www.anacoda.com/download/
+
+1)列出所有的环境：
+  conda info -e
+
+创建环境
+	conda create -n env_name python=3.5
+ex:conda create -n py36 python=3.6
+
+管理环境：
+1）进入环境
+  source active my_env   (osx/linux系统)
+  active my_env   (win系统)(activate)
+
+退出环境： exit（不确定）
+
+环境中安装包
+  conda install package_name
+环境中删除包
+  conda remove package_name
+
+删除环境
+ conda remove -n my_env --all
+
+Jupyter notebook
+
+安装
+ conda install jupyter notebook
+
+运行： jupyter notebook
+结束： ctrl + c
+
+new --> rename
+
+运行：ctrl+ enter
+
+file-->down 
+
+重启一个小窗口 +
+
+---------------------
+scipy
+from scipy import io
+
+arr1=np.array([])
+保存数据
+io.savemat(file_name,mdict)
+ex：io.savemat('a.mat',{'array1':arr1})
+
+载入数据
+io.loadmat(file_name)
+ex:data=io.loadmat('a.mat')
+arr=data['array1']
+
+
+scipy实现统计功能
+
+利用scipy的scipy.stats包中的统计函数实现分析随机数的功能
+form  scipy import stats
+1)stats.norm
+x=stats.norm.rvs(size=20)#生产20个正态分布随机数
+2)stats.uniform
+y=stats.uniform.rvs(size=20)#生产20个[0,1]平均分布随机数
+3)stats.beta
+z=stats.beta.rvs(size=20，a=3,b=4)#生产20个服从a=3,b=4的贝塔分布随机数
+4)stats.poisson
+r=stats.poisson.rvs(06,loc=0,size=20)#生产20个泊松分布随机数
+
+平均值，方差
+(mean,std)=stats.norm.fit（arr）
+
+偏度（skewness）
+  --描述的是概率分布的偏斜（非对称）程度，偏度检验有两个返回值，其中第二个返回值为p-value,即观察到的数据集服从正态分布的概率，取值为0-1
+（skewness，pvaluel）=stats.skewtest(arr)
+
+正偏度分布：右侧尾比左侧尾长，即大数值一端发生的次数较少（均值>中位数）
+
+负偏度分布：左侧尾比右侧尾长，即大数值一端发生的次数较多（均值<中位数）
+正态分布的偏度为0
+
+day9
+
+峰度
+---描述的是描述的的是
+
+(kurtosis,pvalue2)=stats.kurtosistest(arr)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
