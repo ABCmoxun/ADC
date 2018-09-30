@@ -1,1 +1,13 @@
 
+
+伪造UA字符串
+第三方库 fake_uesragent
+安装
+pip install fake_useragent
+
+from fake_useragent import User_Agent
+ua=UserAgent()
+print(ua.random)
+
+随机产生UA
+ua.random
