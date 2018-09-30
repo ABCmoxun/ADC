@@ -1,0 +1,163 @@
+
+
+list
+push,pop
+栈，队列
+栈：先进后出
+队列：先进先出
+ex: lpush rpush lpop rpop
+
+lpush list value
+ex:lpush list1 'hello';lpush list1 'word'
+获取(正向获取)
+lrange list start end
+ex：lrange list1 0 -1
+
+linsert 
+插入元素
+linsert list before value1 value
+ex:linsert list1 before 'two' '1.5'
+
+lset
+修改值
+lset list index newvalue
+ex: lset list1 0 'zero'
+
+lrem
+从key对应的list中删除n个和value相同的元素。（n<0从尾删,n=0全部删除）
+lrem list number value
+ex：lrem list1 1 ‘hello’
+
+ltrim 
+保留指定key的值范围内的数据
+ltrim list indexstart indexend
+ex: ltrim list1 1 -1
+
+lpop,rpop
+lpop 从list的头部删除一个元素，并返回删除的元素
+lpop list
+ex:lpop list1
+
+rpoplpush
+从第一个list的尾部移除元素并添加到第二个list的头部
+
+rpoplpush list1 list2
+
+lindex
+返回名称为key 的list中index位置的元素
+
+lindex list index
+ex：lindex list3 0
+
+llen
+返回list的格式
+llen list
+
+
+set类型
+set是集合,它是string类型的无序集合。
+sadd
+向集合中添加一个值
+sadd set value
+ex:sadd myset1‘hello’
+查看集合里的元素
+smembers set
+ex:smembers myset1
+
+srem
+删除set中的value值
+srem myset2 one
+
+spop
+从集合中随机弹出元素。
+spop set
+ex：spop myset1
+
+sdiff
+两个集合的差集
+sdiff set1 set2
+ex：sdiff myset1 myset2
+把差集存储起来（存在set3中）
+sdiffstore set3 set1 set2
+
+sinter
+返回集合的交集
+sinter set1 set2
+把交集存储起来（存在set3中）
+sinterstore set3 set1 set2
+并集
+sunion set1 set2
+ex：
+
+并集存储起来
+sunionstore set3 set1 set2
+
+smove
+从第一个集合中移除member并添加到第二个集合中。
+smove set1 set2 value
+
+scard
+返回集合元素个数
+scard set1
+
+sismember
+测试member是否是集合中的元素
+sismember set1 value
+ex:
+
+srandmember
+随机返回集合中的一个元素，但不删除元素。
+srandmember set1
+
+有序集合
+zset
+zadd
+向有序集合中添加一个元素，如果该元素存在，则更新其顺序。
+ex： zadd set1 index value
+查询集合元素
+zrange set1 start end  [withscores]
+ex:zrange set1 0 -1 
+
+zrem
+删除集合中的一个元素
+zrem zset1 value
+
+zincrby
+集合中存在value值，则元素的顺序number（可以为正负）增加，否则向集合中添加该元素，
+zincrby zset1 number value
+
+zrank
+返回该值的的顺序号（索引值）
+zank zset1 value
+
+zrevrank
+返回集合中value的顺序号（从大到小排序）
+zrevrank zset value
+
+zrevrange
+返回集合中的value（按从大到小的顺序）
+
+zrangbyscore
+返回一定范围的值
+zrangbyscore zset start end [withscores]
+
+zcount
+返回集合中给定的区间的数量
+zcount zset start end
+
+zcard
+返回集合中元素个数
+zcard zset
+
+zremrangebyrank
+删除集合中顺序在给定区间的元素
+zremrangerank zset start end
+
+zremrangebyscore
+删除集合中是从热在给定区间的元素
+rangebyscore zset start end 
+
+
+
+
+
