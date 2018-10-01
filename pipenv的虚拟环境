@@ -1,0 +1,78 @@
+
+
+pipenv
+安装： pip install pipenv
+官网：https：//docs.pipenv.org
+
+window的命令
+cls
+清屏
+切换盘
+ex：C：；D：；F：
+然后再用cd
+在某盘下打开命令窗口
+shift+鼠标右键
+
+
+
+使用说明
+1、创建虚拟环境
+2、激活虚拟环境
+3、该干啥就干啥
+4、退出虚拟环境
+5、删除虚拟环境
+
+新建文件夹--新建虚拟环境
+
+帮助
+命令  或 命令 --help
+ex：pipenv or pipenv --help
+
+创建虚拟环境
+pipenv --two
+pipenv --three
+
+查看项目位置
+pipenv --where
+
+查看虚拟环境位置
+pipenv --venv
+
+查看解释器信息
+banb=pipenv --py
+banb --version
+
+激活虚拟环境
+pipenv shell     #查看标题头部信息
+退出虚拟环境
+exit
+
+该干啥就干啥
+查看python的版本
+python --version
+
+安装包
+pipenv install 三方库
+查看库的依赖关系
+pipenv graph
+
+卸载包
+pipenv uninstall 三方库
+
+
+5、删除虚拟环境
+pipenv --rm   #在环境的文件夹中
+
+Pipfile和Pipfile.lock文件
+
+
+合作项目文件
+在文件夹下执行 pipenv install
+
+
+
+
+
+
+
+
