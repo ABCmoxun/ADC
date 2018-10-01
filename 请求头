@@ -34,5 +34,17 @@ from scrapy.http import Request, FormRequest
 from zhihu.items import ZhihuPeopleItem, ZhihuRelationItem
 
 
+ yield Request(url,callback=self.parse_people,errback=self.parse_err)
 
-
+  def parse_people(self, response):
+      pass
+  def parse_err(self, response):
+        log.ERROR('crawl {} failed'.format(response.url))
+        
+        
+        
+        
+        
+        
+        
+        
