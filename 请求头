@@ -12,6 +12,10 @@ print(ua.random)
 随机产生UA
 ua.random
 
+github中文网
+http://www.githubs.cn/
+
+
 
 在爬虫项目下创建main.py文件
 
