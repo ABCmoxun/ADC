@@ -13,5 +13,13 @@ print(ua.random)
 ua.random
 
 
+在爬虫项目下创建main.py文件
+
+from scrapy import cmdline
+cmdline.execute("scrapy crawl 爬虫名".split())
+
+运行main.py就可以启动项目下的爬虫
+
+
 
 
