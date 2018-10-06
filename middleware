@@ -9,10 +9,15 @@ PROXIES=[{'ip_port':'127.0.0.1:0000'},
 {'ip_port':'','user_passwd':user:passwd}
          {},,,,,]
 
+
+
+
+
 class RandomUesrAgent(object):
     def process_request(self,request,sprider):
         useragent=random.choice(USER_AGENTS)
         request.headers.setdefault('User_Agent',useragent)
+
 
 
 class RandomProxy(object):
@@ -28,3 +33,23 @@ class RandomProxy(object):
             request.meta['proxy']='http://'+proxy['ip_port']
             request.headers['proxy_Authorization']='basic '+b64.user_psw.decode('utf-8')
             #'basic '有一个空格
+
+
+在middlewares
+在middleware中使用selenium  ！！
+
+
+在settings文件中开启设置
+打开DOWNER_MIDDLEWARE={'douban.middlewares.my_prox':543       #优先级值越小优先极越高,优先级不能相同
+		  'douban.middlewares.my_useragent':544 }
+
+
+
+
+
+
+
+
+
+
+
