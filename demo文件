@@ -4,3 +4,18 @@
 
 
 xpath(string(//xxx/text()))
+
+start_url=[]                                                  #是一个列表
+
+重写start_url方法
+
+def start_url():
+  
+  
+  
+  
+  可以将第一个页面数据传到第二个页面
+  yield scrapy.Request(url,callback=self.parse_html,meta={'item':item})
+  
+  def parse_html(self,response):
+    item=response.meta['item']          #使用方法
