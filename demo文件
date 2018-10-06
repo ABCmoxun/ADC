@@ -1,1 +1,6 @@
 
+
+爬虫可以继承多个类
+
+
+xpath(string(//xxx/text()))
