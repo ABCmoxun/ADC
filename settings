@@ -1,1 +1,30 @@
 
+普通爬虫
+
+setttings.py 设置
+   1、改Robots协议；Flase(22行左右)
+也可以打开DEFAULT_REQUEST_HEADERS = {}(43行)可以在里面设置一些信心user_Agent
+   2、打开Headers选项，添加UA；(19行左右)
+   3、打开PIPELINES，准备保存数据；(分保存在数据和文件中)(67行左右)
+   4、有时候也配置数据库相关信息
+#爬取后需要登录后的信息需要打开：#COOKIES_ENABLED = False(36行)
+
+DOWNLOAD_DELAY = 5  下载延时
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
