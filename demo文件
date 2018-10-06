@@ -1,11 +1,25 @@
 
 
 爬虫可以继承多个类
-
-
 xpath(string(//xxx/text()))
 
-start_url=[]                                                  #是一个列表
+from urllib import urlencode
+from scrapy import log
+from scrapy.spiders import CrawlSpider
+from scrapy.selector import Selector
+from scrapy.http import Request, FormRequest
+from zhihu.items import ZhihuPeopleItem, ZhihuRelationItem
+
+ yield Request(url,callback=self.parse_people,errback=self.parse_err)
+  def parse_people(self, response):
+      pass
+  def parse_err(self, response):
+        log.ERROR('crawl {} failed'.format(response.url))
+
+
+
+
+start_url=[]        #是一个列表
 
 重写start_url方法
 
@@ -19,3 +33,11 @@ def start_url():
   
   def parse_html(self,response):
     item=response.meta['item']          #使用方法
+    
+   
+
+
+        
+        
+        
+        
