@@ -15,14 +15,13 @@ print(ua.ie)
 
 #opera浏览器
 print(ua.opera)
-
 #chrome浏览器
 print(ua.chrome)
 #firefox浏览器
 print(ua.firefox)
 #safri浏览器
 print(ua.safari)
-
+ua.msie ,ua.ff
 随机产生UA
 ua.random
 
@@ -55,9 +54,8 @@ from zhihu.items import ZhihuPeopleItem, ZhihuRelationItem
   def parse_err(self, response):
         log.ERROR('crawl {} failed'.format(response.url))
         
-        
-        
-        
+https://pypi.org/project/fake-useragent/        
+pip install fake-useragent        
         
         
         
