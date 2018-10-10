@@ -28,4 +28,26 @@
  
  
  
+ 在items文件中有两个或多个类的处理方法
+ 在pipeline文件中处理
+ from jianshutotal.items import AItem, BItem
+ 
+ class JianshutotalPipeline(object):
+    def process_item(self, item, spider):
+        if isinstance(item, JsTotalItem):
+          items = dict(item)
+          
+          
+          
+          
+          
+        
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
