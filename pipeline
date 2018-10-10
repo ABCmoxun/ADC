@@ -28,8 +28,10 @@ class Axx(object):
      
 保存到数据库
 (1)mysql
-方法1 
+方法1
+import MySQLdb 
 import pymysql
+MySQLdb.connect()
 class Axx(object):
   def open_spider(self,spider):
     self.client=connect(host='',port=3306,user='root',password='',db='XX',charset='utf8')
@@ -77,18 +79,5 @@ class Axx(object):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-  
       
    
