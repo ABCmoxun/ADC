@@ -1,6 +1,7 @@
 
 写入文件
 (1)
+import json
 class Axx(object):
   def open_spider(self,spider):
     file='abc.text' or 'abc.json' or 'xxx'
@@ -22,8 +23,67 @@ class Axx(object):
      
 保存到数据库
 (1)mysql
+方法1 
+import pymysql
+class Axx(object):
+  def open_spider(self,spider):
+    self.client=connect(host='',port=3306,user='root',password='',db='XX',charset='utf8')
+    self.cursor=self.client.cursor()
+    
+  #item为传来的对象，需要转化为字典，若为字典就不需要转了
+  def process_item(self,item,spider):
+    sql='insert into xx value(%s,%s....)'
+    self.cursor.execute(sql,[item[''],....])
+    self.client.commit()
+    return item
+    
+   def close_spider(self,spider):
+    self.cursor.close()
+    self.client.close()
+
+
+
 
 (2)mongodb
+方法1 
+from XXX.settings import xxxx
+import pymongo
+class Axx(object):
+  def __init__(self):
+    host=''
+    port=
+    dbname=''
+    tb=''
+    client=pymongo.MongoClient(host='',port='')
+    db=client[dbname]
+    self.post=db[tb]
+   def process_item(self,item,spider):
+    item=dict(item)
+    self.post.inset(item)
+    return item
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
       
    
