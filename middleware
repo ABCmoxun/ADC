@@ -16,7 +16,8 @@ PROXIES=[{'ip_port':'127.0.0.1:0000'},
 class RandomUesrAgent(object):
     def process_request(self,request,sprider):
         useragent=random.choice(USER_AGENTS)
-        request.headers.setdefault('User_Agent',useragent)
+        #request.headers.setdefault('User_Agent',useragent)
+	request.headers['User_Agent']=agent ()
 
 
 
@@ -80,11 +81,6 @@ USER_AGENT_LIST = ['zspider/0.9-dev http://feedback.redkolibri.com/',
                     'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0) AddSugarSpiderBot www.idealobserver.com',
                    ]
 
-2.在spider同级目录下建立一个MidWare文件价里面写一个HeaderMidWare.py文件 内容为
- 3.在setting.py文件中添加
-DOWNLOADER_MIDDLEWARES = {
-    'projectName.MidWare.HeaderMidWare.ProcessHeaderMidware': 543,
-}
 
 
 
