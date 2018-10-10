@@ -1,11 +1,21 @@
  
  demo.py文件中引进说明，在items.py中可以创建多个类
  from ABC.items import xx,xx
+ 
  xpath中的 string ,concat
  concat连接字符串
  response.xpath("concat(//div/span/text(),//div/p/text())")
  string提取标签的所有的字符串
  response.xpath("string(//div[@class='xx'])")
+ 
+ 两个层级的网页传递的数据
+ item={'':'','':'',}
+ yield scrapy.Request(url,callback=self.parsefunc,meta={'item':item})
+ 
+ def parsefunc(self,response):
+  item=response.meta['item']
+ 
+ 
  
  
  在项目中可以写一个运行文件
@@ -13,6 +23,7 @@
  from scrapy import cdmline
  cmdline.execute('scrapy crawl douban_spider'.split())   #官方文件用的这个方法
  #cdmline.execute(['scrapy','crawl','douban_spider'])   等价
+ 
  
  
  
