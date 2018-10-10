@@ -29,12 +29,12 @@ class Axx(object):
 保存到数据库
 (1)mysql
 方法1
-import MySQLdb 
+ pymysql.connect
 import pymysql
 MySQLdb.connect()
 class Axx(object):
   def open_spider(self,spider):
-    self.client=connect(host='',port=3306,user='root',password='',db='XX',charset='utf8')
+    self.client= pymysql.connect(host='',port=3306,user='root',password='',db='XX',charset='utf8')
     self.cursor=self.client.cursor()
     
   #item为传来的对象，需要转化为字典，若为字典就不需要转了
