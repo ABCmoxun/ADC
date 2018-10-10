@@ -31,7 +31,7 @@
  在items文件中有两个或多个类的处理方法
  在pipeline文件中处理
  from jianshutotal.items import AItem, BItem
- 
+ 查看信息：https://blog.csdn.net/qq_42630844/article/details/82500419
  class JianshutotalPipeline(object):
     def process_item(self, item, spider):
         if isinstance(item, JsTotalItem):
