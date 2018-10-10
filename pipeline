@@ -1,5 +1,10 @@
 
 写入文件
+
+在运行爬虫时,保存在文件中: 
+	scrapy crawl ABC -o test.json
+	scrapy crawl ABC -o test.csv
+下面需要开启settings 的设置
 (1)
 import json
 class Axx(object):
