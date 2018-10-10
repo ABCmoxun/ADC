@@ -1,1 +1,29 @@
 
+写入文件
+(1)
+class Axx(object):
+  def open_spider(self,spider):
+    file='abc.text' or 'abc.json' or 'xxx'
+    self.dilename(file,'w',encoding='uft-8')
+  #item为传来的对象，需要转化为字典，若为字典就不需要转了
+  def process_item(self,item,spider):
+    line=json.dumps(dict(item),ensure_ascii=False)+'\n'
+    self.filename.write(line)
+    return item
+    
+   def close_spider(self,spider):
+    self.filename.close()
+(2)
+class Axx(object):
+   def process_item(self,item,spider):
+    whith open(filename,'a',encoding='utf-8') as f:
+      f.write(json.dumps(dict(item),ensure_ascii=False)+'\n')
+     return item
+     
+保存到数据库
+(1)mysql
+
+(2)mongodb
+  
+      
+   
