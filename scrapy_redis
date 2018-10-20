@@ -21,6 +21,10 @@ REDIS_PORT = 6379
 
 
 在demo.py文件中
+启始网址
+ redis_key = 'mycrawler:start_urls'
+ redis_key = 'myspider:start_urls'
+ 
 爬虫可以继承这些类
 
 from scrapy.spiders import CrawlSpider     #创建爬虫文件的语法 scrapy genspider pachong_name -t crawl  
