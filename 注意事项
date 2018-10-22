@@ -52,7 +52,7 @@ preceding-sibling::div[N]
 后N位：
 following-sibling::div[N]
 './preceding-sibling::div[1]'
-          
+  '//label[contains(text(), "文本内容")]/../following-sibling::div[1]//input'        
           
           
         
