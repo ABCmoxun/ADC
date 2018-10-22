@@ -70,11 +70,12 @@ class Axx(object):
     return item
 
 
-
-
-
-
-
+pipeline中有多个类
+用isintance判断是否属于该类
+if isinstance(item, JsTotalItem):
+	items = dict(item)
+if isinstance(item, JsTotalItem):
+          items = dict(item)
 
 
 
