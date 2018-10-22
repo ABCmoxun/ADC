@@ -1,7 +1,40 @@
 
 
+scrapy shell url  url可以不加引号
+response.text  字符串
+response.body   字节流
+response.url   response的url
+
+
 爬虫可以继承多个类
-xpath(string(//xxx/text()))
+xpath的用法
+xpath().extrect()
+继续写xpath的话后面可以不.extrect()
+
+'//div[@class]' 带有class属性的div
+'//div[last()]' 最后一个div
+'//div[last()-1]'；'//div[last()-2]'；'//div[last()-n]'
+'//a[contains(@href,'xx')]'  href属性包含 'xx'字符串
+xpath('//a[start-with(@href,'xxx')]') 以'xx'字符串开始的href属性的元素
+xpath('//a[re:test(@class,正则表达式)]')
+xpath('//a[@id="xx"][@class="yy"]//a')两个属性来定位
+'//div[@class="xx" and contains(@id,"yy")]' 双属性定位
+'//div[@class="xx"][1]'
+
+特别重要
+提取字符串
+xpath('string(//xxx/div)')
+字符串拼接
+xpath('concat(//span[@class="xx"]/text(),//span[@class="yy"]/a/text()')
+
+extract()[0]   有时候为空会报错
+extract_first()#最好用这个，为空也不会报错
+extract_one()
+
+
+
+
+
 
 from urllib import urlencode
 from scrapy import log
