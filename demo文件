@@ -19,7 +19,9 @@ from zhihu.items import ZhihuPeopleItem, ZhihuRelationItem
 
 start_url=[]        #是一个列表
 重写start_url方法
-def start_url(self):
+def start_requests(self):
+ url=''
+ yield scrapy.Request(url,callback=self.parse)
 
 一些方法
   可以将第一个页面数据传到第二个页面
