@@ -16,8 +16,8 @@ PROXIES=[{'ip_port':'127.0.0.1:0000'},
 class RandomUesrAgent(object):
     def process_request(self,request,sprider):
         useragent=random.choice(USER_AGENTS)
-        #request.headers.setdefault('User_Agent',useragent)
-	request.headers['User_Agent']=agent
+        #request.headers.setdefault('User-Agent',useragent)   #二选一
+	request.headers['User-Agent']=agent
 
 
 
