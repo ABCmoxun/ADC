@@ -36,8 +36,22 @@
     def process_item(self, item, spider):
         if isinstance(item, JsTotalItem):
           items = dict(item)
-          
-          
+
+
+
+xpath中的兄弟元素
+
+前一位：
+preceding-sibling::div[1]
+后一位：
+following-sibling::div[1]
+
+
+前N位：
+preceding-sibling::div[N]
+后N位：
+following-sibling::div[N]
+'./preceding-sibling::div[1]'
           
           
           
