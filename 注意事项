@@ -97,8 +97,10 @@ https://github.com/scrapy-plugins/scrapy-splash
 https://github.com/playwolf719/EasyCrawler
 
 
-
-
+把json的字符串变成字典
+ json.loads(response.text)
+ 把字典变成json字符串
+ json.dumps()
 
 
 
