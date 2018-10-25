@@ -54,7 +54,8 @@ start_url=[]        #是一个列表
 重写start_url方法
 def start_requests(self):
  url=''
- yield scrapy.Request(url,callback=self.parse)
+ yield scrapy.Request(url,callback=self.parse，dont_filter=)
+ 需要将dont_filter设置为False开启去重，默认是True，没有开启去重；
 
 一些方法
   可以将第一个页面数据传到第二个页面
