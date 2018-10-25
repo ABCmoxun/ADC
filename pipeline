@@ -78,6 +78,51 @@ if isinstance(item, JsTotalItem):
           items = dict(item)
 
 
+去重
+from scrapy.exceptions import DropItem
+class DuplicatesPipeline(object):
+    def __init__(self):
+        self.ids_seen = set()
+    def process_item(self, item, spider):
+        if item['id'] in self.ids_seen:
+            raise DropItem("Duplicate item found: %s" % item)
+        else:
+            self.ids_seen.add(item['id'])  ##这里换成你自己的item["#"]
+            return item
+
+
+from scrapy.exceptions import DropItem  #导入异常处理模块
+class Baidu03Pipeline(object):
+    def __init__(self):          　　#建立构造方法
+        self.title = set()       　　#定义集合
+    def process_item(self, item, spider):
+        title = item['title']    　　#取出要进行判断数据是否重复的字段
+        if title in self.title:  　　#如果存在集合中则直接删除该项，
+            raise DropItem('{}已存在'.format(title))  
+        self.title.add(title)       #如果数据不重复，则加入集合
+        ......                      #插库数据 写在这里即可。。。
+
+        return item
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
       
