@@ -10,16 +10,11 @@ PROXIES=[{'ip_port':'127.0.0.1:0000'},
          {},,,,,]
 
 
-
-
-
 class RandomUesrAgent(object):
     def process_request(self,request,sprider):
         useragent=random.choice(USER_AGENTS)
         #request.headers.setdefault('User-Agent',useragent)   #二选一
 	request.headers['User-Agent']=agent
-
-
 
 class RandomProxy(object):
     def process_request(self,request,sprider):
@@ -85,11 +80,47 @@ USER_AGENT_LIST = ['zspider/0.9-dev http://feedback.redkolibri.com/',
 
 
 
+#资料
+https://blog.csdn.net/u013210620/article/details/80283637 
 
+在SpiderMiddleware中 
+process_spider_input 是SpiderMiddleware下载完成，执行，然后交给parse处理 
+process_spider_output spider处理完成，返回时调用，必须返回包含 Request 或 Item 对象的可迭代对象(iterable)
 
+process_spider_exception return: None,继续交给后续中间件处理异常；含 Response 或 Item 的可迭代对象(iterable)，交给调度器或pipeline
 
+process_start_requests 爬虫启动时调用
+--------------------- 
+在DownMiddleware1中 
+process_request
 
+ 请求需要被下载时，经过所有下载器中间件的process_request调用
+        :param request: 
+        :param spider: 
+        :return:  
+            None,继续后续中间件去下载；
+            Response对象，停止process_request的执行，开始执行process_response
+            Request对象，停止中间件的执行，将Request重新调度器
+            raise IgnoreRequest异常，停止process_request的执行，开始执行process_exception
 
+process_response
 
+ spider处理完成，返回时调用
+        :param response:
+        :param result:
+        :param spider:
+        :return: 
+            Response 对象：转交给其他中间件process_response
+            Request 对象：停止中间件，request会被重新调度下载
+            raise IgnoreRequest 异常：调用Request.errback
 
-
+process_exception
+  当下载处理器(download handler)或 process_request() (下载中间件)抛出异常
+        :param response:
+        :param exception:
+        :param spider:
+        :return: 
+            None：继续交给后续中间件处理异常；
+            Response对象：停止后续process_exception方法
+            Request对象：停止中间件，request将会被重新调用下载
+-------------------
