@@ -82,7 +82,7 @@ USER_AGENT_LIST = ['zspider/0.9-dev http://feedback.redkolibri.com/',
 
 #资料
 https://blog.csdn.net/u013210620/article/details/80283637 
-
+https://chenjiabing666.github.io/2017/03/25/scrapy%E7%9A%84%E4%B8%8B%E8%BD%BD%E5%99%A8%E4%B8%AD%E9%97%B4%E4%BB%B6/
 在SpiderMiddleware中 
 process_spider_input 是SpiderMiddleware下载完成，执行，然后交给parse处理 
 process_spider_output spider处理完成，返回时调用，必须返回包含 Request 或 Item 对象的可迭代对象(iterable)
@@ -93,7 +93,7 @@ process_start_requests 爬虫启动时调用
 --------------------- 
 在DownMiddleware1中 
 process_request
-
+process_request(request, spider)
  请求需要被下载时，经过所有下载器中间件的process_request调用
         :param request: 
         :param spider: 
@@ -104,7 +104,7 @@ process_request
             raise IgnoreRequest异常，停止process_request的执行，开始执行process_exception
 
 process_response
-
+process_response(request, response, spider)
  spider处理完成，返回时调用
         :param response:
         :param result:
@@ -115,6 +115,7 @@ process_response
             raise IgnoreRequest 异常：调用Request.errback
 
 process_exception
+process_exception(request, exception, spider)
   当下载处理器(download handler)或 process_request() (下载中间件)抛出异常
         :param response:
         :param exception:
