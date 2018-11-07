@@ -1,5 +1,6 @@
 
 普通爬虫
+settings里的变量名一般用大写字母，也是规定
 
 setttings.py 设置
    1、改Robots协议；Flase(22行左右)
@@ -11,19 +12,27 @@ setttings.py 设置
 
 DOWNLOAD_DELAY = 5  下载延时
 
+默认cookie为flase，没有使用设置，使用scrapy框架自带的，
+COOKIES_ENABLED=flase（默认值）
+使用时设置为ture
+
+
+log_level='warning'日志等级
+log_file='./log.log'日志保存位置
+在其他scrapy其他文件中使用
+import  logging
+logger=logging.getLogger(__name__)
 
 
 
 
 
-
-
-
-
-
-
-
-
+分布式爬虫一些配置在这里设置
+SCHEDULER = "scrapy_redis.scheduler.Scheduler"  #调度
+DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter" #过滤
+SCHEDULER_PERSIST = True #是否停止
+#REDIS_HOST = 'localhost'
+#REDIS_PORT = 6379
 
 
 
