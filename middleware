@@ -81,7 +81,7 @@ USER_AGENT_LIST = ['zspider/0.9-dev http://feedback.redkolibri.com/',
                     'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0) AddSugarSpiderBot www.idealobserver.com',
                    ]
 
-
+也可以添加cookie  request.cookies='cookies'
 
 
 
