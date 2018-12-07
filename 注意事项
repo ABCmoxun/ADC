@@ -3,10 +3,10 @@
  from ABC.items import xx,xx
  
  xpath中的 string ,concat
- concat连接字符串
+ concat连接字符串,可以连接两个及以上各
  response.xpath("concat(//div/span/text(),//div/p/text())")
  string提取标签的所有的字符串
- response.xpath("string(//div[@class='xx'])")
+ response.xpath("string(//div[@class='xx'])")===response.xpath("//div[@class='xx']//text()")
  选择器
  
  
