@@ -1,9 +1,10 @@
 
 
-scrapy shell url  url可以不加引号
+scrapy shell url  url可以不加引号 ex:scrapy shell http:www.baidu.com
 response.text  字符串
 response.body   字节流
 response.url   response的url
+spider.name  爬虫的name属性
 
 
 爬虫可以继承多个类
@@ -23,17 +24,13 @@ xpath('//a[@id="xx"][@class="yy"]//a')两个属性来定位
 
 特别重要
 提取字符串
-xpath('string(//xxx/div)')
+xpath('string(//xxx/div)')==xpath('//xxx/div//text()')
 字符串拼接
 xpath('concat(//span[@class="xx"]/text(),//span[@class="yy"]/a/text()')
 
 extract()[0]   有时候为空会报错
 extract_first()#最好用这个，为空也不会报错
 extract_one()
-
-
-
-
 
 
 from urllib import urlencode
@@ -50,51 +47,50 @@ from zhihu.items import ZhihuPeopleItem, ZhihuRelationItem
         log.ERROR('crawl {} failed'.format(response.url))
 
 
-start_url=[]        #是一个列表
+
+start_url=[]   #是一个列表
 重写start_url方法
 def start_requests(self):
- url=''
- yield scrapy.Request(url,callback=self.parse，dont_filter=)
- 需要将dont_filter设置为False开启去重，默认是True，没有开启去重；
+  url=''
+  yield scrapy.Request(url,callback=self.parse，dont_filter=)
+需要将dont_filter设置为False开启去重，默认是True，没有开启去重；
 
 一些方法
-  可以将第一个页面数据传到第二个页面
+可以将第一个页面数据传到第二个页面
   yield scrapy.Request(url,callback=self.parse_html,meta={'item':item})
+def parse_html(self,response):
+   item=response.meta['item']  #使用方法
   
-  def parse_html(self,response):
-    item=response.meta['item']          #使用方法
-    
-    使用post提交数据
-    formdata={}  #一个字典
-    yield scrapy.RormRequest(url,formdata=formdata,callback=self.parse_)
-    
-    
-    
-    
-    
-    
+scrapy中get方法提交数据
+ headers={'':''}字典
+ data={'':''}字典
+ meta1={'':''}字典
+ yield scrapy.RormRequest(url='http:www.xx.com',method='GET',formdata=data,meta=meta1,callback=self.parse)
+  
+
+使用post提交数据
+data={}  #一个字典
+  yield scrapy.RormRequest(url,formdata=formdata,method='POST',callback=self.parse)
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+scrapy-redis中的start-request
+https://blog.csdn.net/weixin_42311577/article/details/83543050
+最近在用scrapy-redis的RedisSpider时，需要在起始请求中添加cookie,发现RedisSpider并不可直接使用start_requests，
+需要手动实现。
+分析可知RedisSpider继承于RedisMixin和Spider类，执行逻辑是RedisMixin的next_requests函数接收到了
+redis中data后，通过make_request_from_data函数来解码data生成url,make_request_from_data继续调用Spider类中的
+make_requests_from_url函数生成Request,因此重写Spider中的make_requests_from_url函数即可
+
+class MySpider(RedisSpider):
+	 name='abc'
+  allowed_domains=['xxx']
+  redis_key='tieba:abc:start_urls'
+  
+  def make_requests_from_url(self, url):     
+		  return Request(url, dont_filter=True,cookies={}, meta={} #自定义... )
+  def parse(self, response):
    
-
-
-        
-        
-        
-        
+    
+    
+    
