@@ -6,74 +6,52 @@ response.body   字节流
 response.url   response的url
 spider.name  爬虫的name属性
 
-
-爬虫可以继承多个类
-xpath的用法
-xpath().extrect()
-继续写xpath的话后面可以不.extrect()
-
-'//div[@class]' 带有class属性的div
-'//div[last()]' 最后一个div
-'//div[last()-1]'；'//div[last()-2]'；'//div[last()-n]'
-'//a[contains(@href,'xx')]'  href属性包含 'xx'字符串
-xpath('//a[start-with(@href,'xxx')]') 以'xx'字符串开始的href属性的元素
-xpath('//a[re:test(@class,正则表达式)]')
-xpath('//a[@id="xx"][@class="yy"]//a')两个属性来定位
-'//div[@class="xx" and contains(@id,"yy")]' 双属性定位
-'//div[@class="xx"][1]'
-
-特别重要
-提取字符串
-xpath('string(//xxx/div)')==xpath('//xxx/div//text()')
-字符串拼接
-xpath('concat(//span[@class="xx"]/text(),//span[@class="yy"]/a/text()')
-
-extract()[0]   有时候为空会报错
-extract_first()#最好用这个，为空也不会报错
-extract_one()
-
-
 from urllib import urlencode
 from scrapy import log
-from scrapy.spiders import CrawlSpider
 from scrapy.selector import Selector
 from scrapy.http import Request, FormRequest
-from zhihu.items import ZhihuPeopleItem, ZhihuRelationItem
+ from scrapy_redis.spider import RedisSpider
+from scrapy.spiders import CrawlSpider
+from 项目名.items import abcItem,bcdItem
 
- yield Request(url,callback=self.parse_people,errback=self.parse_err)
+爬虫可以继承多个类
+start_url=[]   #是一个列表
+重写start_url方法
+def start_requests(self):
+	url=''
+  yield scrapy.Request(url,callback=self.parse，dont_filter=True)
+需要将dont_filter设置为False开启去重，默认是True，没有开启去重；
+
+yield Request(url,callback=self.parse_people,errback=self.parse_err)
   def parse_people(self, response):
       pass
   def parse_err(self, response):
         log.ERROR('crawl {} failed'.format(response.url))
-
-
-
-start_url=[]   #是一个列表
-重写start_url方法
-def start_requests(self):
-  url=''
-  yield scrapy.Request(url,callback=self.parse，dont_filter=)
-需要将dont_filter设置为False开启去重，默认是True，没有开启去重；
-
 一些方法
 可以将第一个页面数据传到第二个页面
   yield scrapy.Request(url,callback=self.parse_html,meta={'item':item})
 def parse_html(self,response):
    item=response.meta['item']  #使用方法
   
-scrapy中get方法提交数据
+get和post方法都分需要提交数据和不需要提交数据
+不需要提交数据
+默认为get方法
+  yield scrapy.Request(url='http:www.xx.com',meta=meta1,callback=self.parse)
+post方法
+  yield scrapy.Request(url='http:www.xx.com',method='POST',meta=meta1,callback=self.parse)
+ 
+
+提交数据
  headers={'':''}字典
  data={'':''}字典
  meta1={'':''}字典
+ scrapy中get方法提交数据
  yield scrapy.RormRequest(url='http:www.xx.com',method='GET',formdata=data,meta=meta1,callback=self.parse)
-  
-
 使用post提交数据
 data={}  #一个字典
   yield scrapy.RormRequest(url,formdata=formdata,method='POST',callback=self.parse)
     
-    
-    
+ 
 scrapy-redis中的start-request
 https://blog.csdn.net/weixin_42311577/article/details/83543050
 最近在用scrapy-redis的RedisSpider时，需要在起始请求中添加cookie,发现RedisSpider并不可直接使用start_requests，
@@ -88,9 +66,54 @@ class MySpider(RedisSpider):
   redis_key='tieba:abc:start_urls'
   
   def make_requests_from_url(self, url):     
-		  return Request(url, dont_filter=True,cookies={}, meta={} #自定义... )
+	return scrapy.Request(url, dont_filter=True,cookies={}, meta={} #自定义... )
   def parse(self, response):
-   
-    
-    
-    
+	pass
+ 
+xpath的用法
+xpath().extrect() 继续写xpath的话后面可以不.extrect()
+
+extract()[0]   有时候为空会报错
+extract_first()#最好用这个，为空也不会报错
+extract_one()
+
+'//div[@class]' 带有class属性的div
+'//div[last()]' 最后一个div
+ex: '//div[last()-1]'；'//div[last()-2]'；'//div[last()-n]'
+'//a[contains(@href,'xx')]'  href属性包含 'xx'字符串
+xpath('//a[start-with(@href,'xxx')]') 以'xx'字符串开始的href属性的元素
+xpath('//a[re:test(@class,正则表达式)]')
+xpath('//a[@id="xx"][@class="yy"]//a')两个属性来定位
+'//div[@class="xx" and contains(@id,"yy")]' 双属性定位
+'//div[@class="xx"][1]'
+
+特别重要
+提取字符串
+xpath('string(//xxx/div)')==xpath('//xxx/div//text()')
+字符串拼接
+xpath('concat(//span[@class="xx"]/text(),//span[@class="yy"]/a/text()')
+
+
+scrapy中得到cookie:
+https://doc.scrapy.org/en/1.3/topics/downloader-middleware.html#cookies-mw
+https://doc.scrapy.org/en/latest/topics/request-response.html
+cookie保持
+yield Request(url,callback=self.parse,meta={'dont_merge_cookies': True})
+
+cookie看
+https://www.jianshu.com/p/7a1b8c144d83
+cookies = response.cookies.get_dict()-->
+
+from scrapy.http.cookies import CookieJar
+cookiejar = CookieJar()
+cookiejar.extract_cookies(response, response.request)
+
+# 有些情况可能在发起登录之前会有一些请求,会陆续的产生一些cookie,
+可以在第一次请求的时候将cookiejar写入到request的meta中进行传递
+scrapy.Request(url, callback=self.xxx, meta={'cookiejar': cookiejar})
+# 之后每次需要传递这个cookiejar对象可以从response.meta中拿到
+scrapy.Request(url, callback=self.xxx, meta={'cookiejar': response.meta['cookiejar']})
+yield Request(url,callback=self.parse, cookies=self.cookie,headers=self.headers, meta=self.meta)
+
+
+
