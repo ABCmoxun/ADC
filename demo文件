@@ -1,9 +1,8 @@
 
-
 scrapy shell url  url可以不加引号 ex:scrapy shell http:www.baidu.com
 response.text  字符串
 response.body   字节流
-response.url   response的url
+response.url   response的url,
 spider.name  爬虫的name属性
 
 from urllib import urlencode
@@ -50,7 +49,6 @@ post方法
 使用post提交数据
 data={}  #一个字典
   yield scrapy.RormRequest(url,formdata=formdata,method='POST',callback=self.parse)
-    
  
 scrapy-redis中的start-request
 https://blog.csdn.net/weixin_42311577/article/details/83543050
@@ -89,10 +87,12 @@ xpath('//a[@id="xx"][@class="yy"]//a')两个属性来定位
 
 特别重要
 提取字符串
-xpath('string(//xxx/div)')==xpath('//xxx/div//text()')
+xpath('string(//xxx/div)')==xpath('//xxx/div//text()')--->type()#对象列表，需要加 .extract_first()
 字符串拼接
-xpath('concat(//span[@class="xx"]/text(),//span[@class="yy"]/a/text()')
+d=xpath('concat(//span[@class="xx"]/text(),//span[@class="yy"]/a/text()')-->)#对象列表??
 
+xpath("//div[@class='xx'] | //div[@class='yy']")==xpath("//div[@class='xx']")+response.xpath("//div[@class='yy']")
+#对象列表
 
 scrapy中得到cookie:
 https://doc.scrapy.org/en/1.3/topics/downloader-middleware.html#cookies-mw
@@ -102,7 +102,7 @@ yield Request(url,callback=self.parse,meta={'dont_merge_cookies': True})
 
 cookie看
 https://www.jianshu.com/p/7a1b8c144d83
-cookies = response.cookies.get_dict()-->
+cookies = response.cookies.get_dict()-->type???
 
 from scrapy.http.cookies import CookieJar
 cookiejar = CookieJar()
@@ -112,8 +112,7 @@ cookiejar.extract_cookies(response, response.request)
 可以在第一次请求的时候将cookiejar写入到request的meta中进行传递
 scrapy.Request(url, callback=self.xxx, meta={'cookiejar': cookiejar})
 # 之后每次需要传递这个cookiejar对象可以从response.meta中拿到
-scrapy.Request(url, callback=self.xxx, meta={'cookiejar': response.meta['cookiejar']})
+yield scrapy.Request(url, callback=self.xxx, meta={'cookiejar': response.meta['cookiejar']})
 yield Request(url,callback=self.parse, cookies=self.cookie,headers=self.headers, meta=self.meta)
-
 
 
