@@ -6,7 +6,7 @@
  concat连接字符串,可以连接两个及以上各
  response.xpath("concat(//div/span/text(),//div/p/text())")
  string提取标签的所有的字符串
- response.xpath("string(//div[@class='xx'])")===response.xpath("//div[@class='xx']//text()")
+ response.xpath("string(//div[@class='xx'])").extract_first()===response.xpath("//div[@class='xx']//text()").extract_first()=
  选择器
  
  
@@ -26,8 +26,7 @@
  cmdline.execute('scrapy crawl douban_spider'.split())   #官方文件用的这个方法
  #cdmline.execute(['scrapy','crawl','douban_spider'])   等价
  
- 
- 
+
  在items文件中有两个或多个类的处理方法
  在pipeline文件中处理
  from jianshutotal.items import AItem, BItem
