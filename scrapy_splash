@@ -13,18 +13,68 @@ Preserve log(保留日志 — 刷新重新加载也保留)
 Hide data URLs – 这个是过滤data协议的东西（比如base64的图片），若是页面请求非常多的情况下，勾选这个，
 可以让我们更快速的定位一些请求，因为默认展出的是ALL（所有请求）；
 
+docker的安装：
+查看：https://www.cnblogs.com/linjj/p/5606687.html
+
+
+https://docs.docker.com/install/overview/
+安装docker：不需要安装docker-Toolbox的要求
+win10专业版的64+虚拟化已开启（任务管理器->性能-cpu）
+安装docker-Toolbox：
+http://get.daocloud.io
+http://get.daocloud.io/#install-docker-for-mac-windows
+下载DockerToolbox
+或者：https://hub.docker.com/editions/community/docker-ce-desktop-windows-->Docker Toolbox
+ https://docs.docker.com/toolbox/toolbox_install_windows/#what-you-get-and-how-it-works
+
+安装成功会出现三个图标（Docker为docker quickstart的shell脚本，需要安装一个iso文件初始化）
+
+安装的路径下有boot2docker.iso它会在c:/user/admin/.docker/machine/cache里查找该iso文件，（我们需要把安装路径的文件复制到c:/user/admin/.docker/machine/cache里去）
+不复制它会下载
+
+为找到bash.exe文件：百度
+
+看到鱼和IP 就说明安装好了
+
+运行docker quickstart
+
+安装splansh
+拉取镜像
+docker pull scrapinghub/splash
+
+用docker运行scrapinghub/splash
+docker run -p 8050:8050 scrapinghub/splash
+
+查看效果：
+访问http：//192.168.99.100:8050网页即可
+停止：shell:输入docker ps
+
+ docker kill xxxxx（id：bbd015ff304）
+或者打开：kit那个图像（第一次点击colse）
+输入:splash(查询框中)
+点击my images
+
+开启镜像：点击Hostname/port-->configure port-->'+' -->输入 8050+ip：80850
+--最后重启--关闭stop
+
+在pipeline中
+from scrapy.exceptions import DropItem
+
+if item['type']=='动作'：
+  cxx
+else：
+  raise DropItem
 
 
 
+function main(splash,args)
+ splash.imags_enabled=false   #不加载图片
+ splash.go('https:www.baidu.com')
+ return {html=splash:html()}
+end
 
-
-
-
-
-
-
-
-
+#滚动：
+ splash.scroll_position={x=100,y=200}
 
 
 
