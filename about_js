@@ -62,7 +62,7 @@ execjs.eval("'we are family'.split(‘’)")
  -------------------------
 法三：读js文件
 import execjs
-ith open ('baidu.js') as f:
+with open ('baidu.js') as f:
   jsData=f.read()
 #e是baidu.js的一个js函数
 resp= execjs.compile(jsData).call('e',inputdata)
