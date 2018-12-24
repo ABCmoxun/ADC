@@ -1,0 +1,75 @@
+安装PyV8，PyExecjs,https://github.com/doloopwhile/PyExecJS
+pip install PyV8,windows直接有.exe安装程序：https://github.com/emmetio/pyv8-binaries,
+pip install PyExecJS
+
+? :   条件运算符：
+条件表达式 ? 表达式1 : 表达式2;
+先判断条件表达式的值，如果为true，则执行表达式1的操作，否则则执行表达式2的操作
+
+
+PyV8.JSContext() 创建JSContext对象，因为有enter()方法，可以这样用：with PyV8.JSContext() as ctxt:
+接下来就使用ctxt来执行js脚本，其使用方法多半有两种，
+涉及的关键属性是locals：
+locals
+Local variables within context
+与JavaScript中变量交互（使用最多）：获得JavaScript中变量
+
+import PyV8
+with PyV8.JSContext() as ctxt:
+    ctxt.eval(""" """)
+    vars = ctxt.locals
+    var_ex1 = vars.var_ex1
+print(var_ex1)
+
+
+
+资料url：https://www.jianshu.com/p/055e1ddf7bb2
+import PyV8
+ctxt = PyV8.JSContext()
+ctxt.enter()
+c =xx
+add = '''aesEncrypt = function() { return u + ' '};'''
+#yy.js一个js文件
+with open('yy.js') as f:
+    a = f.read()
+func = ctxt.eval(a + add)
+print(func)
+----------------------
+method 1  https://blog.csdn.net/qq_26877377/article/details/79734969
+import PyV8
+ctxt = PyV8.JSContext()
+ctxt.enter()
+func = ctxt.eval("""
+  (function(){
+    function hello(){
+      return "Hello world.";
+    }
+    return hello();
+  })
+""")
+print(func())
+--------------------- 
+法一
+import execjs
+execjs.eval("'we are family'.split(‘’)")
+法二:读js函数
+ ctx = execjs.compile("""
+  function add(x,y){
+    return x+y
+  }
+ """)
+ res=ctx.call('add',1,2)
+ -------------------------
+法三：读js文件
+import execjs
+ith open ('baidu.js') as f:
+  jsData=f.read()
+#e是baidu.js的一个js函数
+resp= execjs.compile(jsData).call('e',inputdata)
+
+
+
+
+
+
+
