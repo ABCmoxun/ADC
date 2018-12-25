@@ -1,6 +1,7 @@
 安装PyV8，PyExecjs,https://github.com/doloopwhile/PyExecJS
 pip install PyV8,windows直接有.exe安装程序：https://github.com/emmetio/pyv8-binaries,
 pip install PyExecJS
+js在线执行工具：https://tool.lu/coderunner/
 
 ? :   条件运算符：
 条件表达式 ? 表达式1 : 表达式2;
@@ -13,6 +14,23 @@ PyV8.JSContext() 创建JSContext对象，因为有enter()方法，可以这样�
 locals
 Local variables within context
 与JavaScript中变量交互（使用最多）：获得JavaScript中变量
+在NODE中引入md5依赖包：
+1、下载安装md5依赖包: npm install md5
+2、安装crypto模块：npm install crypto 
+1、种
+var md5 =require("md5");
+//设置加密字符串
+var pW="xxxxx";
+console.log(md5(pW))
+2、种
+var crypto=require('crypto'); 
+var md5=crypto.createHash("md5"); 
+md5.update("abcdef"); 
+var str=md5.digest('hex'); 
+var s=str.toUpperCase(); //32位大写 
+console.log(s);
+
+
 
 import PyV8
 with PyV8.JSContext() as ctxt:
