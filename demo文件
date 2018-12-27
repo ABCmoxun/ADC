@@ -1,9 +1,26 @@
 
 scrapy shell url  url可以不加引号 ex:scrapy shell http:www.baidu.com
+
+https://scrapy-chs.readthedocs.io/zh_CN/1.0/topics/request-response.html
+spider的属性：
+spider.name  爬虫的name属性
+spider.allowed_domains:允许的域名,限制爬虫的范围
+spider.start_urls:初始urls
+
+
+response的属性：
+response.status
+response.url   请求的网址的url,
+response.method 请求的HTTP方法
 response.text  字符串
 response.body   字节流
-response.url   response的url,
-spider.name  爬虫的name属性
+response.meta    - 属性的初始值Request.meta（dict）
+response.headers
+response.request
+response.request.headers
+response.cookie
+response.callback
+
 
 from urllib import urlencode
 from scrapy import log
