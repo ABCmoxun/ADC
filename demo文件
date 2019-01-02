@@ -2,6 +2,7 @@
 scrapy shell url  url可以不加引号 ex:scrapy shell http:www.baidu.com
 
 https://scrapy-chs.readthedocs.io/zh_CN/1.0/topics/request-response.html
+https://scrapy-chs.readthedocs.io/zh_CN/1.0/topics/request-response.html#scrapy.http.Response
 spider的属性：
 spider.name  爬虫的name属性
 spider.allowed_domains:允许的域名,限制爬虫的范围
@@ -11,7 +12,6 @@ spider.start_urls:初始urls
 response的属性：
 response.status
 response.url   请求的网址的url,
-response.method 请求的HTTP方法
 response.text  字符串
 response.body   字节流
 response.meta    - 属性的初始值Request.meta（dict）
@@ -58,12 +58,13 @@ post方法
  
 
 提交数据
+scrapy.RormRequest默认方法为POST
  headers={'':''}字典
  data={'':''}字典
  meta1={'':''}字典
  scrapy中get方法提交数据
  yield scrapy.RormRequest(url='http:www.xx.com',method='GET',formdata=data,meta=meta1,callback=self.parse)
-使用post提交数据
+使用post提交数据,
 data={}  #一个字典
   yield scrapy.RormRequest(url,formdata=formdata,method='POST',callback=self.parse)
  
