@@ -36,6 +36,8 @@ class Axx(object):
   def open_spider(self,spider):
     self.client= pymysql.connect(host='',port=3306,user='root',password='',db='XX',charset='utf8')
     self.cursor=self.client.cursor()
+    self.r= redis.Redis(host='127.0.0.1',port=6379,password='xx',,db=0,,decode_responses=True)
+    
     
   #item为传来的对象，需要转化为字典，若为字典就不需要转了
   def process_item(self,item,spider):
@@ -47,6 +49,9 @@ class Axx(object):
    def close_spider(self,spider):
     self.cursor.close()
     self.client.close()
+  
+pool= redis.ConnectionPool(host='localhost',port=6379,decode_responses=True)
+r=redis.Redis(connection_pool=pool)
 
 
 
@@ -76,6 +81,8 @@ if isinstance(item, JsTotalItem):
 	items = dict(item)
 if isinstance(item, JsTotalItem):
           items = dict(item)
+if spider.name=='xx':
+	pass
 
 
 去重
@@ -112,18 +119,3 @@ class Baidu03Pipeline(object):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
-   
