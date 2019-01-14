@@ -1,10 +1,10 @@
-安装PyV8，PyExecjs,https://github.com/doloopwhile/PyExecJS
+安装PyV8，PyExecjs
 pip install PyV8,windows直接有.exe安装程序：https://github.com/emmetio/pyv8-binaries,
-pip install PyExecJS
+pip install PyExecJS https://github.com/doloopwhile/PyExecJS
 pip install js2py
 https://blog.csdn.net/wu0che28/article/details/82834807
 js在线执行工具：https://tool.lu/coderunner/
-
+python代码运行nodejs可以配置环境： os.environ["EXECJS_RUNTIME"] = "Node"或者再百度下os.environ["EXECJS_RUNTIME"] = "JScript"
 ? :   条件运算符：
 条件表达式 ? 表达式1 : 表达式2;
 先判断条件表达式的值，如果为true，则执行表达式1的操作，否则则执行表达式2的操作
@@ -86,6 +86,15 @@ with open ('baidu.js') as f:
   jsData=f.read()
 #e是baidu.js的一个js函数
 resp= execjs.compile(jsData).call('e',inputdata)
+
+import  js2py
+get_docid = js2py.eval_js(DocID_js.decode('latin1'))
+
+
+
+
+
+
 
 
 
