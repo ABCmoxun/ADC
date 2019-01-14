@@ -1,6 +1,8 @@
 安装PyV8，PyExecjs,https://github.com/doloopwhile/PyExecJS
 pip install PyV8,windows直接有.exe安装程序：https://github.com/emmetio/pyv8-binaries,
 pip install PyExecJS
+pip install js2py
+https://blog.csdn.net/wu0che28/article/details/82834807
 js在线执行工具：https://tool.lu/coderunner/
 
 ? :   条件运算符：
@@ -84,10 +86,6 @@ with open ('baidu.js') as f:
   jsData=f.read()
 #e是baidu.js的一个js函数
 resp= execjs.compile(jsData).call('e',inputdata)
-
-
-
-
 
 
 
