@@ -21,29 +21,31 @@ REDIS_PORT = 6379
 LOG_LEVEL = 'DEBUG'   #
 
 
-
 在demo.py文件中
 启始网址
  redis_key = 'mycrawler:start_urls'
  redis_key = 'myspider:start_urls'
  
 爬虫可以继承这些类
-
 from scrapy.spiders import CrawlSpider     #创建爬虫文件的语法 scrapy genspider pachong_name -t crawl  
 class DmozSpider(CrawlSpider):
-
 
 from scrapy_redis.spiders import RedisCrawlSpider
 class MyCrawler(RedisCrawlSpider):
 
-
 from scrapy_redis.spiders import RedisSpider     #一般用这个类
 class MySpider(RedisSpider)：
+深度和广度优先
+＃使用优先级队列安排请求。（默认）
+＃ SCHEDULER_QUEUE_CLASS = 'scrapy_redis.queue.PriorityQueue'
 
-
-
-
-
+＃替代队列
+# 广度优先
+＃ SCHEDULER_QUEUE_CLASS = 'scrapy_redis.queue.FifoQueue' 
+DEPTH_PRIORITY = 1  # 广度优先
+# 深度优先
+＃ SCHEDULER_QUEUE_CLASS = 'scrapy_redis.queue.LifoQueue'
+DEPTH_PRIORITY = -1 # 深度优先
 
 
 
