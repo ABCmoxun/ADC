@@ -39,7 +39,6 @@
 
 
 xpath中的兄弟元素
-
 前一位：
 preceding-sibling::div[1]
 后一位：
@@ -51,6 +50,8 @@ preceding-sibling::div[N]
 following-sibling::div[N]
 './preceding-sibling::div[1]'
   '//label[contains(text(), "文本内容")]/../following-sibling::div[1]//input'       
+ //a[text()='百度快照'] == //a[contains(text(),"百度快照")]
+ 
  
  
 scrapy中的模拟登陆
@@ -100,19 +101,7 @@ https://github.com/playwolf719/EasyCrawler
  json.loads(response.text)
  把字典变成json字符串
  json.dumps()
-
-
-
-
-
-
-
-
-           
-            
-            
-
-        
+json.load()和json.dump()是操作文件的，+s操作对象的
  
  
  
